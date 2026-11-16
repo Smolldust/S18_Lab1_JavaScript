@@ -10,7 +10,34 @@ function genererContenu() {
   for (let i = 0; i < nombre; i++){
     let h2 = document.createElement("h2");
     h2.textContent = titre + " " + i;
+
+    h2.setAttribute("monId", "Id" + i);
+
+    h2.addEventListener("mousedown", function(event) {
+      console.log(event);
+      console.log(event.target);
+      console.log(event.target.getAttribute("monId"));
+
+      if(event.target.style.backgroundColor == "gray"){
+        event.target.style.backgroundColor = "white";
+      }
+      else{
+        event.target.style.backgroundColor = "gray";
+      }
+    });
+
     demo.appendChild(h2);
+
+    let aside = document.createElement("aside");
+    aside.textContent = "Plus de détails à propos de: " + i;
+    demo.appendChild(aside);
+
+    h2.addEventListener("mouseenter", function () {
+        aside.classList.add("show");
+    });
+    h2.addEventListener("mouseleave", function () {
+        aside.classList.remove("show");
+    });
 
     let p = document.createElement("p");
     p.textContent = texte + " " + i;
